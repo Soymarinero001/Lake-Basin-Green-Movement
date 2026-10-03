@@ -105,11 +105,31 @@ footer{background:var(--deep);color:#9fbdbb;padding:28px 0;font-size:.95rem}
 const impact={trees:0,waste:0,people:0};
 for(const k in impact)document.getElementById(k).textContent=impact[k].toLocaleString();
 
-// Placeholder: the real sign-up will be saved to the database in the next step.
-document.getElementById("joinForm").addEventListener("submit",e=>{
+const SUPABASE_URL="https://nrthmawyufracjvxsaia.supabase.co";
+const SUPABASE_KEY="sb_publishable_DpSYby4HrI9UOBhRq0nrfg_kQKtUG7F";
+
+document.getElementById("joinForm").addEventListener("submit",async e=>{
   e.preventDefault();
-  document.getElementById("msg").textContent="Thank you! Sign-ups will go live soon.";
-  e.target.reset();
+  const form=e.target, msg=document.getElementById("msg"), btn=form.querySelector("button");
+  btn.disabled=true;
+  msg.textContent="Sending...";
+  try{
+    const res=await fetch(SUPABASE_URL+"/rest/v1/signups",{
+      method:"POST",
+      headers:{"Content-Type":"application/json","apikey":SUPABASE_KEY,"Prefer":"return=minimal"},
+      body:JSON.stringify({
+        name:document.getElementById("name").value.trim(),
+        phone:document.getElementById("phone").value.trim(),
+        activity:document.getElementById("activity").value
+      })
+    });
+    if(!res.ok)throw new Error("Request failed");
+    msg.textContent="Thank you! You're signed up. We'll contact you about the next drive.";
+    form.reset();
+  }catch(err){
+    msg.textContent="Sorry, that did not work. Please check your connection and try again.";
+  }
+  btn.disabled=false;
 });
 </script>
 </body>
