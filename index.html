@@ -59,7 +59,7 @@ footer{background:var(--deep);color:#9fbdbb;padding:28px 0;font-size:.95rem}
     <div class="counters">
       <div><strong id="trees">0</strong>trees planted</div>
       <div><strong id="waste">0</strong>kg of waste collected</div>
-      <div><strong id="people">0</strong>volunteers joined</div>
+      <div><strong id="people">0</strong>volunteers took part</div>
     </div>
   </div>
 </section>
@@ -101,10 +101,6 @@ footer{background:var(--deep);color:#9fbdbb;padding:28px 0;font-size:.95rem}
 <footer><div class="wrap">Lake-Basin Green Movement, Kisumu, Kenya</div></footer>
 
 <script>
-// Update these numbers by hand for now. Later they will come from the database.
-const impact={trees:0,waste:0,people:0};
-for(const k in impact)document.getElementById(k).textContent=impact[k].toLocaleString();
-
 const SUPABASE_URL="https://nrthmawyufracjvxsaia.supabase.co";
 const SUPABASE_KEY="sb_publishable_DpSYby4HrI9UOBhRq0nrfg_kQKtUG7F";
 
@@ -131,6 +127,24 @@ document.getElementById("joinForm").addEventListener("submit",async e=>{
   }
   btn.disabled=false;
 });
+
+// Live progress counters: totals come from the impact_totals() function in Supabase.
+async function loadImpact(){
+  try{
+    const res=await fetch(SUPABASE_URL+"/rest/v1/rpc/impact_totals",{
+      method:"POST",
+      headers:{"Content-Type":"application/json","apikey":SUPABASE_KEY},
+      body:"{}"
+    });
+    if(!res.ok)throw new Error("Request failed");
+    const t=await res.json();
+    for(const k of ["trees","waste","people"])
+      document.getElementById(k).textContent=Number(t[k]||0).toLocaleString();
+  }catch(err){
+    // If it fails, the counters simply stay at 0.
+  }
+}
+loadImpact();
 </script>
 </body>
 </html>
