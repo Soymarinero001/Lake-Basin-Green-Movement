@@ -145,6 +145,7 @@ footer{background:var(--deep);color:#9fbdbb;padding:28px 0;font-size:.95rem}
 <script>
 const SUPABASE_URL="https://nrthmawyufracjvxsaia.supabase.co";
 const SUPABASE_KEY="sb_publishable_DpSYby4HrI9UOBhRq0nrfg_kQKtUG7F";
+const EMAIL_URL="https://script.google.com/macros/s/AKfycbwdn5IJsTi7RauZMdzG05jpvCj4OeJhACz33WD7vhOwB0GA0qQsHRjXQGdgLz0UIPm8/exec";
 
 document.getElementById("joinForm").addEventListener("submit",async e=>{
   e.preventDefault();
@@ -163,6 +164,19 @@ document.getElementById("joinForm").addEventListener("submit",async e=>{
       })
     });
     if(!res.ok)throw new Error("Request failed");
+    const emailValue=document.getElementById("email").value.trim();
+    if(EMAIL_URL&&emailValue){
+      fetch(EMAIL_URL,{
+        method:"POST",
+        mode:"no-cors",
+        headers:{"Content-Type":"text/plain"},
+        body:JSON.stringify({
+          name:document.getElementById("name").value.trim(),
+          email:emailValue,
+          activity:document.getElementById("activity").value
+        })
+      }).catch(()=>{});
+    }
     msg.textContent="Thank you! You're signed up. We'll contact you about the next drive.";
     form.reset();
   }catch(err){
