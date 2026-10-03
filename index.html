@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lake-Basin Green Movement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--deep:#0c3a40;--lake:#1f7a80;--hyacinth:#6d4fa3;--reed:#c8b560;--mist:#e8f0ef;--ink:#12292c}
+*{box-sizing:border-box}
+body{margin:0;font:18px/1.6 "Source Sans 3",system-ui,sans-serif;color:var(--ink);background:var(--mist)}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.1;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--hyacinth);outline-offset:3px}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px}
+header.hero{background:var(--deep);color:#fff;padding:72px 0 0;position:relative;overflow:hidden}
+.hero h1{font-size:clamp(2.6rem,8vw,5.5rem);font-weight:800;max-width:11ch}
+.hero p{max-width:46ch;font-size:1.2rem;color:#cfe3e1;margin:24px 0 32px}
+.btn{display:inline-block;background:var(--reed);color:var(--deep);font-weight:600;padding:14px 26px;border-radius:999px;text-decoration:none}
+.btn:hover{background:#fff}
+.waves{display:block;width:200%;height:90px;margin-top:40px;animation:drift 18s linear infinite}
+@keyframes drift{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.waves{animation:none}}
+section{padding:64px 0}
+h2{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:24px;color:var(--deep)}
+.counters{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;border-top:3px solid var(--lake);padding-top:24px}
+.counters strong{display:block;font:800 3rem "Bricolage Grotesque",sans-serif;color:var(--hyacinth)}
+.acts{list-style:none;margin:0;padding:0}
+.acts li{display:grid;grid-template-columns:minmax(0,220px) 1fr;gap:24px;padding:20px 0;border-bottom:1px solid #b9cfcd}
+.acts h3{font-size:1.3rem;color:var(--lake)}
+.acts p{margin:0}
+.join{background:var(--lake);color:#fff}
+.join h2{color:#fff}
+.join form{display:grid;gap:14px;max-width:460px}
+.join label{font-weight:600}
+.join input,.join select{width:100%;padding:12px;border:0;border-radius:8px;font:inherit}
+.join button{border:0;cursor:pointer;font:600 1rem inherit;font-family:inherit}
+footer{background:var(--deep);color:#9fbdbb;padding:28px 0;font-size:.95rem}
+@media (max-width:640px){.acts li{grid-template-columns:1fr;gap:6px}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <h1>Keep Lake Victoria alive.</h1>
+    <p>Lake-Basin Green Movement brings Kisumu's residents, schools and leaders together to clean the shoreline, plant trees and protect the lake for the next generation.</p>
+    <a class="btn" href="#join">Join the next drive</a>
+  </div>
+  <svg class="waves" viewBox="0 0 1200 90" preserveAspectRatio="none" aria-hidden="true">
+    <path fill="#e8f0ef" d="M0 50 Q150 10 300 50 T600 50 T900 50 T1200 50 V90 H0Z"/>
+  </svg>
+</header>
+
+<main>
+<section>
+  <div class="wrap">
+    <h2>Our progress so far</h2>
+    <div class="counters">
+      <div><strong id="trees">0</strong>trees planted</div>
+      <div><strong id="waste">0</strong>kg of waste collected</div>
+      <div><strong id="people">0</strong>volunteers joined</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>What we do</h2>
+    <ul class="acts">
+      <li><h3>Community clean-ups</h3><p>Regular shoreline and neighbourhood waste collection, every quarter.</p></li>
+      <li><h3>Tree planting</h3><p>Restoring degraded land around the lake basin, with a five-year reforestation target.</p></li>
+      <li><h3>Awareness campaigns</h3><p>Practical lessons on waste sorting and living with a changing climate.</p></li>
+      <li><h3>Youth conservation clubs</h3><p>Schools and universities compete to plant, clean and learn.</p></li>
+      <li><h3>Working with government</h3><p>We work with the county environment office and NEMA to strengthen local rules.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="join" id="join">
+  <div class="wrap">
+    <h2>Join a drive</h2>
+    <form id="joinForm">
+      <label for="name">Full name</label>
+      <input id="name" required>
+      <label for="phone">Phone number</label>
+      <input id="phone" type="tel" required>
+      <label for="activity">I want to help with</label>
+      <select id="activity">
+        <option>Clean-up</option>
+        <option>Tree planting</option>
+        <option>Awareness</option>
+      </select>
+      <button class="btn" type="submit">Sign me up</button>
+      <p id="msg" role="status"></p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">Lake-Basin Green Movement, Kisumu, Kenya</div></footer>
+
+<script>
+// Update these numbers by hand for now. Later they will come from the database.
+const impact={trees:0,waste:0,people:0};
+for(const k in impact)document.getElementById(k).textContent=impact[k].toLocaleString();
+
+// Placeholder: the real sign-up will be saved to the database in the next step.
+document.getElementById("joinForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  document.getElementById("msg").textContent="Thank you! Sign-ups will go live soon.";
+  e.target.reset();
+});
+</script>
+</body>
+</html>
