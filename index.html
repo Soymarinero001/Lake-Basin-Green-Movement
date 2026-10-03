@@ -30,6 +30,18 @@ h2{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:24px;color:var(--deep)}
 .acts li{display:grid;grid-template-columns:minmax(0,220px) 1fr;gap:24px;padding:20px 0;border-bottom:1px solid #b9cfcd}
 .acts h3{font-size:1.3rem;color:var(--lake)}
 .acts p{margin:0}
+.ev-group{margin:0 0 40px}
+.ev-group h3{font-size:1.2rem;color:var(--hyacinth);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em}
+.ev-list{list-style:none;margin:0;padding:0 0 0 22px;border-left:3px solid var(--lake)}
+.ev-list li{position:relative;padding:0 0 28px 8px}
+.ev-list li::before{content:"";position:absolute;left:-32px;top:6px;width:13px;height:13px;border-radius:50%;background:var(--reed);border:3px solid var(--mist);box-shadow:0 0 0 2px var(--lake)}
+.ev-date{font-weight:600;color:var(--lake)}
+.ev-list h4{font:700 1.3rem "Bricolage Grotesque",sans-serif;margin:2px 0 4px;color:var(--deep)}
+.ev-list p{margin:0 0 6px}
+.ev-place{color:#4a6568;font-size:.95rem}
+.ev-result{font-weight:600;color:var(--hyacinth)}
+.ev-join{display:inline-block;margin-top:6px;padding:8px 18px;border-radius:999px;background:var(--lake);color:#fff;text-decoration:none;font-weight:600;font-size:.95rem}
+.ev-join:hover{background:var(--deep)}
 .join{background:var(--lake);color:#fff}
 .join h2{color:#fff}
 .join form{display:grid;gap:14px;max-width:460px}
@@ -74,6 +86,20 @@ footer{background:var(--deep);color:#9fbdbb;padding:28px 0;font-size:.95rem}
       <li><h3>Youth conservation clubs</h3><p>Schools and universities compete to plant, clean and learn.</p></li>
       <li><h3>Working with government</h3><p>We work with the county environment office and NEMA to strengthen local rules.</p></li>
     </ul>
+  </div>
+</section>
+
+<section id="events">
+  <div class="wrap">
+    <h2>Events</h2>
+    <div class="ev-group">
+      <h3>Upcoming</h3>
+      <ul class="ev-list" id="upcoming"><li>Loading...</li></ul>
+    </div>
+    <div class="ev-group">
+      <h3>Our story so far</h3>
+      <ul class="ev-list" id="past"><li>Loading...</li></ul>
+    </div>
   </div>
 </section>
 
@@ -145,6 +171,42 @@ async function loadImpact(){
   }
 }
 loadImpact();
+
+// Events: read from the events table in Supabase and split into upcoming and past.
+function eventItem(ev,isUpcoming){
+  const li=document.createElement("li");
+  const add=(tag,cls,text)=>{const el=document.createElement(tag);if(cls)el.className=cls;el.textContent=text;li.appendChild(el);};
+  const d=new Date(ev.event_date+"T00:00:00");
+  add("div","ev-date",d.toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"}));
+  add("h4","",ev.title);
+  if(ev.location)add("div","ev-place",ev.location);
+  if(ev.description)add("p","",ev.description);
+  if(ev.result)add("p","ev-result",ev.result);
+  if(isUpcoming){
+    const a=document.createElement("a");
+    a.className="ev-join";a.href="#join";a.textContent="Join this drive";
+    li.appendChild(a);
+  }
+  return li;
+}
+async function loadEvents(){
+  const up=document.getElementById("upcoming"), past=document.getElementById("past");
+  try{
+    const res=await fetch(SUPABASE_URL+"/rest/v1/events?select=*&order=event_date.asc",{headers:{"apikey":SUPABASE_KEY}});
+    if(!res.ok)throw new Error("Request failed");
+    const events=await res.json();
+    const now=new Date();
+    const today=now.getFullYear()+"-"+String(now.getMonth()+1).padStart(2,"0")+"-"+String(now.getDate()).padStart(2,"0");
+    const upcoming=events.filter(e=>e.event_date>=today);
+    const done=events.filter(e=>e.event_date<today).reverse();
+    up.replaceChildren(...(upcoming.length?upcoming.map(e=>eventItem(e,true)):[Object.assign(document.createElement("li"),{textContent:"The next drive will be announced soon. Join below to be the first to know."})]));
+    past.replaceChildren(...(done.length?done.map(e=>eventItem(e,false)):[Object.assign(document.createElement("li"),{textContent:"Our story starts here."})]));
+  }catch(err){
+    up.textContent="Events could not load right now. Please try again later.";
+    past.textContent="";
+  }
+}
+loadEvents();
 </script>
 </body>
 </html>
