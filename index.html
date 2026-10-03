@@ -42,6 +42,12 @@ h2{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:24px;color:var(--deep)}
 .ev-result{font-weight:600;color:var(--hyacinth)}
 .ev-join{display:inline-block;margin-top:6px;padding:8px 18px;border-radius:999px;background:var(--lake);color:#fff;text-decoration:none;font-weight:600;font-size:.95rem}
 .ev-join:hover{background:var(--deep)}
+.faq details{border-bottom:1px solid #b9cfcd;padding:16px 0}
+.faq summary{cursor:pointer;font:700 1.15rem "Bricolage Grotesque",sans-serif;color:var(--deep);list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--hyacinth);font-size:1.5rem;line-height:1}
+.faq details[open] summary::after{content:"\2212"}
+.faq details p{margin:10px 0 0;max-width:62ch}
 .join{background:var(--lake);color:#fff}
 .join h2{color:#fff}
 .join form{display:grid;gap:14px;max-width:460px}
@@ -100,6 +106,13 @@ footer{background:var(--deep);color:#9fbdbb;padding:28px 0;font-size:.95rem}
       <h3>Our story so far</h3>
       <ul class="ev-list" id="past"><li>Loading...</li></ul>
     </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <h2>Ask the Lake</h2>
+    <div class="faq" id="faqList">Loading...</div>
   </div>
 </section>
 
@@ -207,6 +220,28 @@ async function loadEvents(){
   }
 }
 loadEvents();
+
+// Questions and answers: read from the faqs table in Supabase.
+async function loadFaqs(){
+  const box=document.getElementById("faqList");
+  try{
+    const res=await fetch(SUPABASE_URL+"/rest/v1/faqs?select=*&order=sort_order.asc",{headers:{"apikey":SUPABASE_KEY}});
+    if(!res.ok)throw new Error("Request failed");
+    const faqs=await res.json();
+    box.replaceChildren(...faqs.map(f=>{
+      const d=document.createElement("details");
+      const s=document.createElement("summary");
+      s.textContent=f.question;
+      const p=document.createElement("p");
+      p.textContent=f.answer;
+      d.append(s,p);
+      return d;
+    }));
+  }catch(err){
+    box.textContent="Questions could not load right now. Please try again later.";
+  }
+}
+loadFaqs();
 </script>
 </body>
 </html>
