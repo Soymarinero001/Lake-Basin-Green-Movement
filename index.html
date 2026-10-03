@@ -124,6 +124,8 @@ footer{background:var(--deep);color:#9fbdbb;padding:28px 0;font-size:.95rem}
       <input id="name" required>
       <label for="phone">Phone number</label>
       <input id="phone" type="tel" required>
+      <label for="email">Email (optional)</label>
+      <input id="email" type="email" autocomplete="email">
       <label for="activity">I want to help with</label>
       <select id="activity">
         <option>Clean-up</option>
@@ -131,6 +133,7 @@ footer{background:var(--deep);color:#9fbdbb;padding:28px 0;font-size:.95rem}
         <option>Awareness</option>
       </select>
       <button class="btn" type="submit">Sign me up</button>
+      <p style="font-size:.9rem;margin:0">We use your details only to contact you about Lake-Basin Green Movement drives. You can ask us to remove them at any time.</p>
       <p id="msg" role="status"></p>
     </form>
   </div>
@@ -155,6 +158,7 @@ document.getElementById("joinForm").addEventListener("submit",async e=>{
       body:JSON.stringify({
         name:document.getElementById("name").value.trim(),
         phone:document.getElementById("phone").value.trim(),
+        email:document.getElementById("email").value.trim()||null,
         activity:document.getElementById("activity").value
       })
     });
