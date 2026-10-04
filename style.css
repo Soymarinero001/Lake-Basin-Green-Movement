@@ -1,0 +1,79 @@
+:root{--deep:#0c3a40;--lake:#1f7a80;--hyacinth:#6d4fa3;--reed:#c8b560;--mist:#e8f0ef;--ink:#12292c}
+*{box-sizing:border-box}
+body{margin:0;font:18px/1.6 "Source Sans 3",system-ui,sans-serif;color:var(--ink);background:var(--mist)}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.1;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--hyacinth);outline-offset:3px}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px}
+
+/* top bar and menu */
+.top{background:var(--deep);color:#fff}
+.nav{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px 28px;max-width:960px;margin:0 auto;padding:16px 24px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff;font:700 1.05rem/1.1 "Bricolage Grotesque",system-ui,sans-serif}
+.nav ul{display:flex;flex-wrap:wrap;gap:4px 22px;list-style:none;margin:0;padding:0}
+.nav ul a{color:#cfe3e1;text-decoration:none;padding:6px 0;border-bottom:2px solid transparent;font-weight:600}
+.nav ul a:hover,.nav ul a[aria-current]{color:#fff;border-color:var(--reed)}
+
+/* hero and page headings */
+.hero{background:var(--deep);color:#fff;padding:48px 0 0;overflow:hidden}
+.hero h1{font-size:clamp(2.6rem,8vw,5.5rem);font-weight:800;max-width:11ch}
+.hero p{max-width:46ch;font-size:1.2rem;color:#cfe3e1;margin:24px 0 32px}
+.pagehead{background:var(--deep);color:#fff;padding:24px 0 48px}
+.pagehead h1{font-size:clamp(2.2rem,6vw,3.6rem);font-weight:800}
+.pagehead p{max-width:52ch;color:#cfe3e1;margin:14px 0 0;font-size:1.1rem}
+.btn{display:inline-block;background:var(--reed);color:var(--deep);font-weight:600;padding:14px 26px;border-radius:999px;text-decoration:none}
+.btn:hover{background:#fff}
+.waves{display:block;width:200%;height:90px;margin-top:40px;animation:drift 18s linear infinite}
+@keyframes drift{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.waves{animation:none}}
+
+section{padding:56px 0}
+h2{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:24px;color:var(--deep)}
+.lead{max-width:62ch;margin:0 0 20px}
+.more{display:inline-block;margin-top:8px;font-weight:600;color:var(--lake)}
+
+/* counters */
+.counters{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;border-top:3px solid var(--lake);padding-top:24px}
+.counters strong{display:block;font:800 3rem "Bricolage Grotesque",sans-serif;color:var(--hyacinth)}
+
+/* activities */
+.acts{list-style:none;margin:0;padding:0}
+.acts li{display:grid;grid-template-columns:minmax(0,220px) 1fr;gap:24px;padding:20px 0;border-bottom:1px solid #b9cfcd}
+.acts h3{font-size:1.3rem;color:var(--lake)}
+.acts p{margin:0}
+@media (max-width:640px){.acts li{grid-template-columns:1fr;gap:6px}}
+
+/* events */
+.ev-group{margin:0 0 40px}
+.ev-group h3{font-size:1.2rem;color:var(--hyacinth);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em}
+.ev-list{list-style:none;margin:0;padding:0 0 0 22px;border-left:3px solid var(--lake)}
+.ev-list li{position:relative;padding:0 0 28px 8px}
+.ev-list li::before{content:"";position:absolute;left:-32px;top:6px;width:13px;height:13px;border-radius:50%;background:var(--reed);border:3px solid var(--mist);box-shadow:0 0 0 2px var(--lake)}
+.ev-date{font-weight:600;color:var(--lake)}
+.ev-list h4{font:700 1.3rem "Bricolage Grotesque",sans-serif;margin:2px 0 4px;color:var(--deep)}
+.ev-list p{margin:0 0 6px}
+.ev-place{color:#4a6568;font-size:.95rem}
+.ev-result{font-weight:600;color:var(--hyacinth)}
+.ev-join{display:inline-block;margin-top:6px;padding:8px 18px;border-radius:999px;background:var(--lake);color:#fff;text-decoration:none;font-weight:600;font-size:.95rem}
+.ev-join:hover{background:var(--deep)}
+
+/* questions */
+.faq details{border-bottom:1px solid #b9cfcd;padding:16px 0}
+.faq summary{cursor:pointer;font:700 1.15rem "Bricolage Grotesque",sans-serif;color:var(--deep);list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--hyacinth);font-size:1.5rem;line-height:1}
+.faq details[open] summary::after{content:"\2212"}
+.faq details p{margin:10px 0 0;max-width:62ch}
+
+/* join form */
+.join{background:var(--lake);color:#fff}
+.join h2{color:#fff}
+.join form{display:grid;gap:14px;max-width:460px}
+.join label{font-weight:600}
+.join input,.join select{width:100%;padding:12px;border:0;border-radius:8px;font:inherit}
+.join button{border:0;cursor:pointer;font:600 1rem inherit;font-family:inherit}
+.join .note{font-size:.9rem;margin:0}
+
+/* footer */
+footer{background:var(--deep);color:#9fbdbb;padding:28px 0;font-size:.95rem}
+footer a{color:var(--reed)}

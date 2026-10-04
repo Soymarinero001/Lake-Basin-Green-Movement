@@ -7,81 +7,21 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
-<style>
-:root{--deep:#0c3a40;--lake:#1f7a80;--hyacinth:#6d4fa3;--reed:#c8b560;--mist:#e8f0ef;--ink:#12292c}
-*{box-sizing:border-box}
-body{margin:0;font:18px/1.6 "Source Sans 3",system-ui,sans-serif;color:var(--ink);background:var(--mist)}
-h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.1;margin:0}
-a{color:inherit}
-:focus-visible{outline:3px solid var(--hyacinth);outline-offset:3px}
-.wrap{max-width:960px;margin:0 auto;padding:0 24px}
-header.hero{background:var(--deep);color:#fff;padding:72px 0 0;position:relative;overflow:hidden}
-.brand{display:flex;align-items:center;gap:14px;margin-bottom:48px;font:700 1.15rem/1.1 "Bricolage Grotesque",system-ui,sans-serif;letter-spacing:.02em}
-.hero h1{font-size:clamp(2.6rem,8vw,5.5rem);font-weight:800;max-width:11ch}
-.hero p{max-width:46ch;font-size:1.2rem;color:#cfe3e1;margin:24px 0 32px}
-.btn{display:inline-block;background:var(--reed);color:var(--deep);font-weight:600;padding:14px 26px;border-radius:999px;text-decoration:none}
-.btn:hover{background:#fff}
-.waves{display:block;width:200%;height:90px;margin-top:40px;animation:drift 18s linear infinite}
-@keyframes drift{to{transform:translateX(-50%)}}
-@media (prefers-reduced-motion:reduce){.waves{animation:none}}
-section{padding:64px 0}
-h2{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:24px;color:var(--deep)}
-.counters{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;border-top:3px solid var(--lake);padding-top:24px}
-.counters strong{display:block;font:800 3rem "Bricolage Grotesque",sans-serif;color:var(--hyacinth)}
-.acts{list-style:none;margin:0;padding:0}
-.acts li{display:grid;grid-template-columns:minmax(0,220px) 1fr;gap:24px;padding:20px 0;border-bottom:1px solid #b9cfcd}
-.acts h3{font-size:1.3rem;color:var(--lake)}
-.acts p{margin:0}
-.ev-group{margin:0 0 40px}
-.ev-group h3{font-size:1.2rem;color:var(--hyacinth);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em}
-.ev-list{list-style:none;margin:0;padding:0 0 0 22px;border-left:3px solid var(--lake)}
-.ev-list li{position:relative;padding:0 0 28px 8px}
-.ev-list li::before{content:"";position:absolute;left:-32px;top:6px;width:13px;height:13px;border-radius:50%;background:var(--reed);border:3px solid var(--mist);box-shadow:0 0 0 2px var(--lake)}
-.ev-date{font-weight:600;color:var(--lake)}
-.ev-list h4{font:700 1.3rem "Bricolage Grotesque",sans-serif;margin:2px 0 4px;color:var(--deep)}
-.ev-list p{margin:0 0 6px}
-.ev-place{color:#4a6568;font-size:.95rem}
-.ev-result{font-weight:600;color:var(--hyacinth)}
-.ev-join{display:inline-block;margin-top:6px;padding:8px 18px;border-radius:999px;background:var(--lake);color:#fff;text-decoration:none;font-weight:600;font-size:.95rem}
-.ev-join:hover{background:var(--deep)}
-.faq details{border-bottom:1px solid #b9cfcd;padding:16px 0}
-.faq summary{cursor:pointer;font:700 1.15rem "Bricolage Grotesque",sans-serif;color:var(--deep);list-style:none;display:flex;justify-content:space-between;gap:16px}
-.faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";color:var(--hyacinth);font-size:1.5rem;line-height:1}
-.faq details[open] summary::after{content:"\2212"}
-.faq details p{margin:10px 0 0;max-width:62ch}
-.join{background:var(--lake);color:#fff}
-.join h2{color:#fff}
-.join form{display:grid;gap:14px;max-width:460px}
-.join label{font-weight:600}
-.join input,.join select{width:100%;padding:12px;border:0;border-radius:8px;font:inherit}
-.join button{border:0;cursor:pointer;font:600 1rem inherit;font-family:inherit}
-footer{background:var(--deep);color:#9fbdbb;padding:28px 0;font-size:.95rem}
-@media (max-width:640px){.acts li{grid-template-columns:1fr;gap:6px}}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
-<body>
-<header class="hero">
+<body data-page="home">
+<header id="site-header" class="top"></header>
+
+<section class="hero">
   <div class="wrap">
-    <div class="brand">
-      <svg viewBox="0 0 120 120" width="56" height="56" aria-hidden="true">
-        <path d="M60 8 C60 8 100 52 100 78 A40 40 0 0 1 20 78 C20 52 60 8 60 8 Z" fill="#1f7a80"/>
-        <rect x="57" y="68" width="6" height="26" rx="2" fill="#c8b560"/>
-        <circle cx="60" cy="52" r="15" fill="#e8f0ef"/>
-        <circle cx="47" cy="64" r="11" fill="#e8f0ef"/>
-        <circle cx="73" cy="64" r="11" fill="#e8f0ef"/>
-        <path d="M38 98 q5.5 -6 11 0 t11 0 t11 0 t11 0" fill="none" stroke="#c8b560" stroke-width="3.5" stroke-linecap="round"/>
-      </svg>
-      <span>Lake-Basin<br>Green Movement</span>
-    </div>
     <h1>Keep Lake Victoria alive.</h1>
     <p>Lake-Basin Green Movement brings Kisumu's residents, schools and leaders together to clean the shoreline, plant trees and protect the lake for the next generation.</p>
-    <a class="btn" href="#join">Join the next drive</a>
+    <a class="btn" href="join.html#join">Join the next drive</a>
   </div>
   <svg class="waves" viewBox="0 0 1200 90" preserveAspectRatio="none" aria-hidden="true">
     <path fill="#e8f0ef" d="M0 50 Q150 10 300 50 T600 50 T900 50 T1200 50 V90 H0Z"/>
   </svg>
-</header>
+</section>
 
 <main>
 <section>
@@ -97,182 +37,22 @@ footer{background:var(--deep);color:#9fbdbb;padding:28px 0;font-size:.95rem}
 
 <section>
   <div class="wrap">
+    <h2>Next drive</h2>
+    <ul class="ev-list" id="nextDrive"><li>Loading...</li></ul>
+    <a class="more" href="events.html">See all events</a>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
     <h2>What we do</h2>
-    <ul class="acts">
-      <li><h3>Community clean-ups</h3><p>Regular shoreline and neighbourhood waste collection, every quarter.</p></li>
-      <li><h3>Tree planting</h3><p>Restoring degraded land around the lake basin, with a five-year reforestation target.</p></li>
-      <li><h3>Awareness campaigns</h3><p>Practical lessons on waste sorting and living with a changing climate.</p></li>
-      <li><h3>Youth conservation clubs</h3><p>Schools and universities compete to plant, clean and learn.</p></li>
-      <li><h3>Working with government</h3><p>We work with the county environment office and NEMA to strengthen local rules.</p></li>
-    </ul>
-  </div>
-</section>
-
-<section id="events">
-  <div class="wrap">
-    <h2>Events</h2>
-    <div class="ev-group">
-      <h3>Upcoming</h3>
-      <ul class="ev-list" id="upcoming"><li>Loading...</li></ul>
-    </div>
-    <div class="ev-group">
-      <h3>Our story so far</h3>
-      <ul class="ev-list" id="past"><li>Loading...</li></ul>
-    </div>
-  </div>
-</section>
-
-<section id="faq">
-  <div class="wrap">
-    <h2>Ask the Lake</h2>
-    <div class="faq" id="faqList">Loading...</div>
-  </div>
-</section>
-
-<section class="join" id="join">
-  <div class="wrap">
-    <h2>Join a drive</h2>
-    <form id="joinForm">
-      <label for="name">Full name</label>
-      <input id="name" required>
-      <label for="phone">Phone number</label>
-      <input id="phone" type="tel" required>
-      <label for="email">Email (optional)</label>
-      <input id="email" type="email" autocomplete="email">
-      <label for="activity">I want to help with</label>
-      <select id="activity">
-        <option>Clean-up</option>
-        <option>Tree planting</option>
-        <option>Awareness</option>
-      </select>
-      <button class="btn" type="submit">Sign me up</button>
-      <p style="font-size:.9rem;margin:0">We use your details only to contact you about Lake-Basin Green Movement drives. You can ask us to remove them at any time.</p>
-      <p id="msg" role="status"></p>
-    </form>
+    <p class="lead">We clean up shorelines and neighbourhoods, plant trees on degraded land, teach communities about waste and climate, support youth conservation clubs, and work with local government to protect Lake Victoria.</p>
+    <a class="more" href="about.html">Learn more about us</a>
   </div>
 </section>
 </main>
 
-<footer><div class="wrap">Lake-Basin Green Movement, Kisumu, Kenya<br>Contact us: <a href="mailto:lakebasingreenmovement@gmail.com" style="color:var(--reed)">lakebasingreenmovement@gmail.com</a></div></footer>
-
-<script>
-const SUPABASE_URL="https://nrthmawyufracjvxsaia.supabase.co";
-const SUPABASE_KEY="sb_publishable_DpSYby4HrI9UOBhRq0nrfg_kQKtUG7F";
-const EMAIL_URL="https://script.google.com/macros/s/AKfycbwdn5IJsTi7RauZMdzG05jpvCj4OeJhACz33WD7vhOwB0GA0qQsHRjXQGdgLz0UIPm8/exec";
-
-document.getElementById("joinForm").addEventListener("submit",async e=>{
-  e.preventDefault();
-  const form=e.target, msg=document.getElementById("msg"), btn=form.querySelector("button");
-  btn.disabled=true;
-  msg.textContent="Sending...";
-  try{
-    const res=await fetch(SUPABASE_URL+"/rest/v1/signups",{
-      method:"POST",
-      headers:{"Content-Type":"application/json","apikey":SUPABASE_KEY,"Prefer":"return=minimal"},
-      body:JSON.stringify({
-        name:document.getElementById("name").value.trim(),
-        phone:document.getElementById("phone").value.trim(),
-        email:document.getElementById("email").value.trim()||null,
-        activity:document.getElementById("activity").value
-      })
-    });
-    if(!res.ok)throw new Error("Request failed");
-    const emailValue=document.getElementById("email").value.trim();
-    if(EMAIL_URL&&emailValue){
-      fetch(EMAIL_URL,{
-        method:"POST",
-        mode:"no-cors",
-        headers:{"Content-Type":"text/plain"},
-        body:JSON.stringify({
-          name:document.getElementById("name").value.trim(),
-          email:emailValue,
-          activity:document.getElementById("activity").value
-        })
-      }).catch(()=>{});
-    }
-    msg.textContent="Thank you! You're signed up. We'll contact you about the next drive.";
-    form.reset();
-  }catch(err){
-    msg.textContent="Sorry, that did not work. Please check your connection and try again.";
-  }
-  btn.disabled=false;
-});
-
-// Live progress counters: totals come from the impact_totals() function in Supabase.
-async function loadImpact(){
-  try{
-    const res=await fetch(SUPABASE_URL+"/rest/v1/rpc/impact_totals",{
-      method:"POST",
-      headers:{"Content-Type":"application/json","apikey":SUPABASE_KEY},
-      body:"{}"
-    });
-    if(!res.ok)throw new Error("Request failed");
-    const t=await res.json();
-    for(const k of ["trees","waste","people"])
-      document.getElementById(k).textContent=Number(t[k]||0).toLocaleString();
-  }catch(err){
-    // If it fails, the counters simply stay at 0.
-  }
-}
-loadImpact();
-
-// Events: read from the events table in Supabase and split into upcoming and past.
-function eventItem(ev,isUpcoming){
-  const li=document.createElement("li");
-  const add=(tag,cls,text)=>{const el=document.createElement(tag);if(cls)el.className=cls;el.textContent=text;li.appendChild(el);};
-  const d=new Date(ev.event_date+"T00:00:00");
-  add("div","ev-date",d.toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"}));
-  add("h4","",ev.title);
-  if(ev.location)add("div","ev-place",ev.location);
-  if(ev.description)add("p","",ev.description);
-  if(ev.result)add("p","ev-result",ev.result);
-  if(isUpcoming){
-    const a=document.createElement("a");
-    a.className="ev-join";a.href="#join";a.textContent="Join this drive";
-    li.appendChild(a);
-  }
-  return li;
-}
-async function loadEvents(){
-  const up=document.getElementById("upcoming"), past=document.getElementById("past");
-  try{
-    const res=await fetch(SUPABASE_URL+"/rest/v1/events?select=*&order=event_date.asc",{headers:{"apikey":SUPABASE_KEY}});
-    if(!res.ok)throw new Error("Request failed");
-    const events=await res.json();
-    const now=new Date();
-    const today=now.getFullYear()+"-"+String(now.getMonth()+1).padStart(2,"0")+"-"+String(now.getDate()).padStart(2,"0");
-    const upcoming=events.filter(e=>e.event_date>=today);
-    const done=events.filter(e=>e.event_date<today).reverse();
-    up.replaceChildren(...(upcoming.length?upcoming.map(e=>eventItem(e,true)):[Object.assign(document.createElement("li"),{textContent:"The next drive will be announced soon. Join below to be the first to know."})]));
-    past.replaceChildren(...(done.length?done.map(e=>eventItem(e,false)):[Object.assign(document.createElement("li"),{textContent:"Our story starts here."})]));
-  }catch(err){
-    up.textContent="Events could not load right now. Please try again later.";
-    past.textContent="";
-  }
-}
-loadEvents();
-
-// Questions and answers: read from the faqs table in Supabase.
-async function loadFaqs(){
-  const box=document.getElementById("faqList");
-  try{
-    const res=await fetch(SUPABASE_URL+"/rest/v1/faqs?select=*&order=sort_order.asc",{headers:{"apikey":SUPABASE_KEY}});
-    if(!res.ok)throw new Error("Request failed");
-    const faqs=await res.json();
-    box.replaceChildren(...faqs.map(f=>{
-      const d=document.createElement("details");
-      const s=document.createElement("summary");
-      s.textContent=f.question;
-      const p=document.createElement("p");
-      p.textContent=f.answer;
-      d.append(s,p);
-      return d;
-    }));
-  }catch(err){
-    box.textContent="Questions could not load right now. Please try again later.";
-  }
-}
-loadFaqs();
-</script>
+<footer id="site-footer"></footer>
+<script src="app.js"></script>
 </body>
 </html>

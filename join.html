@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get involved | Lake-Basin Green Movement</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-page="join">
+<header id="site-header" class="top"></header>
+
+<div class="pagehead">
+  <div class="wrap">
+    <h1>Get involved</h1>
+    <p>Sign up to help with the next drive, or read the answers to common questions first.</p>
+  </div>
+</div>
+
+<main>
+<section class="join" id="join">
+  <div class="wrap">
+    <h2>Join a drive</h2>
+    <form id="joinForm">
+      <label for="name">Full name</label>
+      <input id="name" required>
+      <label for="phone">Phone number</label>
+      <input id="phone" type="tel" required>
+      <label for="email">Email (optional)</label>
+      <input id="email" type="email" autocomplete="email">
+      <label for="activity">I want to help with</label>
+      <select id="activity">
+        <option>Clean-up</option>
+        <option>Tree planting</option>
+        <option>Awareness</option>
+      </select>
+      <button class="btn" type="submit">Sign me up</button>
+      <p class="note">We use your details only to contact you about Lake-Basin Green Movement drives. You can ask us to remove them at any time.</p>
+      <p id="msg" role="status"></p>
+    </form>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <h2>Ask the Lake</h2>
+    <div class="faq" id="faqList">Loading...</div>
+  </div>
+</section>
+</main>
+
+<footer id="site-footer"></footer>
+<script src="app.js"></script>
+</body>
+</html>
