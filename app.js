@@ -5,7 +5,7 @@ const EMAIL_URL="https://script.google.com/macros/s/AKfycbwdn5IJsTi7RauZMdzG05jp
 const CONTACT_EMAIL="lakebasingreenmovement@gmail.com";
 
 /* Menu: add or rename pages here and every page updates */
-const PAGES=[["home","index.html","Home"],["events","events.html","Events"],["join","join.html","Get involved"],["about","about.html","About"]];
+const PAGES=[["home","index.html","Home"],["events","events.html","Events"],["join","join.html","Get involved"],["support","support.html","Support us"],["about","about.html","About"]];
 
 const LOGO='<svg viewBox="0 0 120 120" width="48" height="48" aria-hidden="true">'
 +'<path d="M60 8 C60 8 100 52 100 78 A40 40 0 0 1 20 78 C20 52 60 8 60 8 Z" fill="#1f7a80"/>'
